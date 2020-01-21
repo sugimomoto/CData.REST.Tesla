@@ -1,0 +1,57 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="NearbyChargingSites" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="available_stalls"             xs:type="double" readonly="false"              other:xPath="/json/response/superchargers/available_stalls"      />
+    <attr name="distance_miles"               xs:type="double" readonly="false"              other:xPath="/json/response/destination_charging/distance_miles" />
+    <attr name="location.lat"                 xs:type="double" readonly="false"              other:xPath="/json/response/destination_charging/location/lat"   />
+    <attr name="location.long"                xs:type="double" readonly="false"              other:xPath="/json/response/destination_charging/location/long"  />
+    <attr name="name"                         xs:type="string" readonly="false"              other:xPath="/json/response/destination_charging/name"           />
+    <attr name="superchargers.distance_miles" xs:type="double" readonly="false"              other:xPath="/json/response/superchargers/distance_miles"        />
+    <attr name="superchargers.location.lat"   xs:type="double" readonly="false"              other:xPath="/json/response/superchargers/location/lat"          />
+    <attr name="superchargers.location.long"  xs:type="double" readonly="false"              other:xPath="/json/response/superchargers/location/long"         />
+    <attr name="superchargers.name"           xs:type="string" readonly="false"              other:xPath="/json/response/superchargers/name"                  />
+    <attr name="superchargers.type"           xs:type="string" readonly="false"              other:xPath="/json/response/superchargers/type"                  />
+    <attr name="total_stalls"                 xs:type="double" readonly="false"              other:xPath="/json/response/superchargers/total_stalls"          />
+    <attr name="type"                         xs:type="string" readonly="false"              other:xPath="/json/response/destination_charging/type"           />
+  </api:info>
+
+  <api:script method="GET">
+
+      <api:set attr="TokenApiRequest.data">
+{
+  "grant_type": "password",
+  "client_id": "[_connection.client_id]",
+  "client_secret": "[_connection.client_secret]",
+  "email": "[_connection.user]",
+  "password": "[_connection.password]"
+}
+      </api:set>
+
+      <api:set attr="TokenApiRequest.ElementMapPath#1" value="/access_token" />
+      <api:set attr="TokenApiRequest.ElementMapName#1" value="access_token" />
+      <api:set attr="TokenApiRequest.RepeatElement" value="/"/>
+      <api:set attr="TokenApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/oauth/token?grantType=password" />
+      <api:set attr="TokenApiRequest.Method" value="POST"/>
+
+      <api:set attr="TokenApiRequest.encodepostdata" value="false" />
+      <rsb:set attr="TokenApiRequest.ContentType" value="application/json"/>
+
+        <api:call op="jsonproviderGet" input="TokenApiRequest" output="TokenApiResponse">
+
+          <api:set attr="MainApiRequest.DataModel" value="DOCUMENT" />
+          <api:set attr="MainApiRequest.JSONPath" value="$.response" />
+          <api:set attr="MainApiRequest.EnablePaging" value="True" />  
+          <api:set attr="MainApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/api/1/vehicles/[_connection.VehicleId]/nearby_charging_sites" />
+          <api:set attr="MainApiRequest.header:name" value="Authorization"/>
+          <api:set attr="MainApiRequest.header:value" value="Bearer [TokenApiResponse.access_token]"/>
+
+          <api:call op="jsonproviderGet" input="MainApiRequest">
+            <api:push/>
+          </api:call>
+  
+        </api:call>
+  </api:script>
+
+</api:script>

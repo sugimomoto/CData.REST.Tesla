@@ -1,0 +1,154 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="VehicleData" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="api_version"                                         xs:type="double"  readonly="false"              other:xPath="/json/response/api_version"                                         />
+    <attr name="calendar_enabled"                                    xs:type="boolean" readonly="false"              other:xPath="/json/response/calendar_enabled"                                    />
+    <attr name="charge_state.battery_level"                          xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/battery_level"                          />
+    <attr name="charge_state.battery_range"                          xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/battery_range"                          />
+    <attr name="charge_state.charge_current_request"                 xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_current_request"                 />
+    <attr name="charge_state.charge_current_request_max"             xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_current_request_max"             />
+    <attr name="charge_state.charge_enable_request"                  xs:type="boolean" readonly="false"              other:xPath="/json/response/charge_state/charge_enable_request"                  />
+    <attr name="charge_state.charge_energy_added"                    xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_energy_added"                    />
+    <attr name="charge_state.charge_limit_soc"                       xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_limit_soc"                       />
+    <attr name="charge_state.charge_limit_soc_max"                   xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_limit_soc_max"                   />
+    <attr name="charge_state.charge_limit_soc_min"                   xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_limit_soc_min"                   />
+    <attr name="charge_state.charge_limit_soc_std"                   xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_limit_soc_std"                   />
+    <attr name="charge_state.charge_miles_added_ideal"               xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_miles_added_ideal"               />
+    <attr name="charge_state.charge_miles_added_rated"               xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charge_miles_added_rated"               />
+    <attr name="charge_state.charge_port_latch"                      xs:type="string"  readonly="false"              other:xPath="/json/response/charge_state/charge_port_latch"                      />
+    <attr name="charge_state.charger_pilot_current"                  xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/charger_pilot_current"                  />
+    <attr name="charge_state.charging_state"                         xs:type="string"  readonly="false"              other:xPath="/json/response/charge_state/charging_state"                         />
+    <attr name="charge_state.conn_charge_cable"                      xs:type="string"  readonly="false"              other:xPath="/json/response/charge_state/conn_charge_cable"                      />
+    <attr name="charge_state.est_battery_range"                      xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/est_battery_range"                      />
+    <attr name="charge_state.fast_charger_brand"                     xs:type="string"  readonly="false"              other:xPath="/json/response/charge_state/fast_charger_brand"                     />
+    <attr name="charge_state.fast_charger_type"                      xs:type="string"  readonly="false"              other:xPath="/json/response/charge_state/fast_charger_type"                      />
+    <attr name="charge_state.ideal_battery_range"                    xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/ideal_battery_range"                    />
+    <attr name="charge_state.timestamp"                              xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/timestamp"                              />
+    <attr name="charge_state.usable_battery_level"                   xs:type="double"  readonly="false"              other:xPath="/json/response/charge_state/usable_battery_level"                   />
+    <attr name="climate_state.climate_keeper_mode"                   xs:type="string"  readonly="false"              other:xPath="/json/response/climate_state/climate_keeper_mode"                   />
+    <attr name="climate_state.driver_temp_setting"                   xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/driver_temp_setting"                   />
+    <attr name="climate_state.max_avail_temp"                        xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/max_avail_temp"                        />
+    <attr name="climate_state.min_avail_temp"                        xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/min_avail_temp"                        />
+    <attr name="climate_state.passenger_temp_setting"                xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/passenger_temp_setting"                />
+    <attr name="climate_state.remote_heater_control_enabled"         xs:type="boolean" readonly="false"              other:xPath="/json/response/climate_state/remote_heater_control_enabled"         />
+    <attr name="climate_state.seat_heater_left"                      xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/seat_heater_left"                      />
+    <attr name="climate_state.seat_heater_rear_left"                 xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/seat_heater_rear_left"                 />
+    <attr name="climate_state.seat_heater_rear_right"                xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/seat_heater_rear_right"                />
+    <attr name="climate_state.seat_heater_right"                     xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/seat_heater_right"                     />
+    <attr name="climate_state.timestamp"                             xs:type="double"  readonly="false"              other:xPath="/json/response/climate_state/timestamp"                             />
+    <attr name="display_name"                                        xs:type="string"  readonly="false"              other:xPath="/json/response/display_name"                                        />
+    <attr name="drive_state.gps_as_of"                               xs:type="double"  readonly="false"              other:xPath="/json/response/drive_state/gps_as_of"                               />
+    <attr name="drive_state.heading"                                 xs:type="double"  readonly="false"              other:xPath="/json/response/drive_state/heading"                                 />
+    <attr name="drive_state.latitude"                                xs:type="double"  readonly="false"              other:xPath="/json/response/drive_state/latitude"                                />
+    <attr name="drive_state.longitude"                               xs:type="double"  readonly="false"              other:xPath="/json/response/drive_state/longitude"                               />
+    <attr name="drive_state.native_latitude"                         xs:type="double"  readonly="false"              other:xPath="/json/response/drive_state/native_latitude"                         />
+    <attr name="drive_state.native_location_supported"               xs:type="double"  readonly="false"              other:xPath="/json/response/drive_state/native_location_supported"               />
+    <attr name="drive_state.native_longitude"                        xs:type="double"  readonly="false"              other:xPath="/json/response/drive_state/native_longitude"                        />
+    <attr name="drive_state.native_type"                             xs:type="string"  readonly="false"              other:xPath="/json/response/drive_state/native_type"                             />
+    <attr name="drive_state.timestamp"                               xs:type="double"  readonly="false"              other:xPath="/json/response/drive_state/timestamp"                               />
+    <attr name="gui_settings.gui_charge_rate_units"                  xs:type="string"  readonly="false"              other:xPath="/json/response/gui_settings/gui_charge_rate_units"                  />
+    <attr name="gui_settings.gui_distance_units"                     xs:type="string"  readonly="false"              other:xPath="/json/response/gui_settings/gui_distance_units"                     />
+    <attr name="gui_settings.gui_range_display"                      xs:type="string"  readonly="false"              other:xPath="/json/response/gui_settings/gui_range_display"                      />
+    <attr name="gui_settings.gui_temperature_units"                  xs:type="string"  readonly="false"              other:xPath="/json/response/gui_settings/gui_temperature_units"                  />
+    <attr name="gui_settings.show_range_units"                       xs:type="boolean" readonly="false"              other:xPath="/json/response/gui_settings/show_range_units"                       />
+    <attr name="gui_settings.timestamp"                              xs:type="double"  readonly="false"              other:xPath="/json/response/gui_settings/timestamp"                              />
+    <attr name="id"                                                  xs:type="double"  readonly="false"              other:xPath="/json/response/id"                                                  />
+    <attr name="id_s"                                                xs:type="string"  readonly="false"              other:xPath="/json/response/id_s"                                                />
+    <attr name="option_codes"                                        xs:type="string"  readonly="false"              other:xPath="/json/response/option_codes"                                        />
+    <attr name="state"                                               xs:type="string"  readonly="false"              other:xPath="/json/response/state"                                               />
+    <attr name="tokens"                                              xs:type="string"  readonly="false"              other:xPath="/json/response/tokens"                                              />
+    <attr name="user_id"                                             xs:type="double"  readonly="false"              other:xPath="/json/response/user_id"                                             />
+    <attr name="vehicle_config.can_accept_navigation_requests"       xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_config/can_accept_navigation_requests"       />
+    <attr name="vehicle_config.can_actuate_trunks"                   xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_config/can_actuate_trunks"                   />
+    <attr name="vehicle_config.car_special_type"                     xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/car_special_type"                     />
+    <attr name="vehicle_config.car_type"                             xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/car_type"                             />
+    <attr name="vehicle_config.charge_port_type"                     xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/charge_port_type"                     />
+    <attr name="vehicle_config.exterior_color"                       xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/exterior_color"                       />
+    <attr name="vehicle_config.has_air_suspension"                   xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_config/has_air_suspension"                   />
+    <attr name="vehicle_config.key_version"                          xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_config/key_version"                          />
+    <attr name="vehicle_config.motorized_charge_port"                xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_config/motorized_charge_port"                />
+    <attr name="vehicle_config.perf_config"                          xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/perf_config"                          />
+    <attr name="vehicle_config.plg"                                  xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_config/plg"                                  />
+    <attr name="vehicle_config.roof_color"                           xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/roof_color"                           />
+    <attr name="vehicle_config.seat_type"                            xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_config/seat_type"                            />
+    <attr name="vehicle_config.spoiler_type"                         xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/spoiler_type"                         />
+    <attr name="vehicle_config.sun_roof_installed"                   xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_config/sun_roof_installed"                   />
+    <attr name="vehicle_config.third_row_seats"                      xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/third_row_seats"                      />
+    <attr name="vehicle_config.timestamp"                            xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_config/timestamp"                            />
+    <attr name="vehicle_config.trim_badging"                         xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/trim_badging"                         />
+    <attr name="vehicle_config.wheel_type"                           xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_config/wheel_type"                           />
+    <attr name="vehicle_id"                                          xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_id"                                          />
+    <attr name="vehicle_state.api_version"                           xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/api_version"                           />
+    <attr name="vehicle_state.autopark_state_v2"                     xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_state/autopark_state_v2"                     />
+    <attr name="vehicle_state.autopark_style"                        xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_state/autopark_style"                        />
+    <attr name="vehicle_state.calendar_supported"                    xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/calendar_supported"                    />
+    <attr name="vehicle_state.car_version"                           xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_state/car_version"                           />
+    <attr name="vehicle_state.homelink_nearby"                       xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/homelink_nearby"                       />
+    <attr name="vehicle_state.last_autopark_error"                   xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_state/last_autopark_error"                   />
+    <attr name="vehicle_state.locked"                                xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/locked"                                />
+    <attr name="vehicle_state.media_state.remote_control_enabled"    xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/media_state/remote_control_enabled"    />
+    <attr name="vehicle_state.notifications_supported"               xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/notifications_supported"               />
+    <attr name="vehicle_state.odometer"                              xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/odometer"                              />
+    <attr name="vehicle_state.parsed_calendar_supported"             xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/parsed_calendar_supported"             />
+    <attr name="vehicle_state.remote_start_enabled"                  xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/remote_start_enabled"                  />
+    <attr name="vehicle_state.remote_start_supported"                xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/remote_start_supported"                />
+    <attr name="vehicle_state.sentry_mode"                           xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/sentry_mode"                           />
+    <attr name="vehicle_state.sentry_mode_available"                 xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/sentry_mode_available"                 />
+    <attr name="vehicle_state.smart_summon_available"                xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/smart_summon_available"                />
+    <attr name="vehicle_state.software_update.download_perc"         xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/software_update/download_perc"         />
+    <attr name="vehicle_state.software_update.expected_duration_sec" xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/software_update/expected_duration_sec" />
+    <attr name="vehicle_state.software_update.install_perc"          xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/software_update/install_perc"          />
+    <attr name="vehicle_state.software_update.scheduled_time_ms"     xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/software_update/scheduled_time_ms"     />
+    <attr name="vehicle_state.software_update.status"                xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_state/software_update/status"                />
+    <attr name="vehicle_state.software_update.version"               xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_state/software_update/version"               />
+    <attr name="vehicle_state.speed_limit_mode.current_limit_mph"    xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/speed_limit_mode/current_limit_mph"    />
+    <attr name="vehicle_state.speed_limit_mode.max_limit_mph"        xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/speed_limit_mode/max_limit_mph"        />
+    <attr name="vehicle_state.speed_limit_mode.min_limit_mph"        xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/speed_limit_mode/min_limit_mph"        />
+    <attr name="vehicle_state.summon_standby_mode_enabled"           xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/summon_standby_mode_enabled"           />
+    <attr name="vehicle_state.sun_roof_state"                        xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_state/sun_roof_state"                        />
+    <attr name="vehicle_state.timestamp"                             xs:type="double"  readonly="false"              other:xPath="/json/response/vehicle_state/timestamp"                             />
+    <attr name="vehicle_state.valet_pin_needed"                      xs:type="boolean" readonly="false"              other:xPath="/json/response/vehicle_state/valet_pin_needed"                      />
+    <attr name="vehicle_state.vehicle_name"                          xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_state/vehicle_name"                          />
+    <attr name="vin"                                                 xs:type="string"  readonly="false"              other:xPath="/json/response/vin"                                                 />
+  </api:info>
+
+  <api:script method="GET">
+
+      <api:set attr="TokenApiRequest.data">
+{
+  "grant_type": "password",
+  "client_id": "[_connection.client_id]",
+  "client_secret": "[_connection.client_secret]",
+  "email": "[_connection.user]",
+  "password": "[_connection.password]"
+}
+      </api:set>
+
+      <api:set attr="TokenApiRequest.ElementMapPath#1" value="/access_token" />
+      <api:set attr="TokenApiRequest.ElementMapName#1" value="access_token" />
+      <api:set attr="TokenApiRequest.RepeatElement" value="/"/>
+      <api:set attr="TokenApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/oauth/token?grantType=password" />
+      <api:set attr="TokenApiRequest.Method" value="POST"/>
+
+      <api:set attr="TokenApiRequest.encodepostdata" value="false" />
+      <rsb:set attr="TokenApiRequest.ContentType" value="application/json"/>
+
+        <api:call op="jsonproviderGet" input="TokenApiRequest" output="TokenApiResponse">
+
+          <api:set attr="MainApiRequest.DataModel" value="DOCUMENT" />
+          <api:set attr="MainApiRequest.JSONPath" value="$.response" />
+          <api:set attr="MainApiRequest.EnablePaging" value="True" />  
+          <api:set attr="MainApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/api/1/vehicles/[_connection.VehicleId]/vehicle_data" />
+          <api:set attr="MainApiRequest.header:name" value="Authorization"/>
+          <api:set attr="MainApiRequest.header:value" value="Bearer [TokenApiResponse.access_token]"/>
+
+          <api:call op="jsonproviderGet" input="MainApiRequest">
+            <api:push/>
+          </api:call>
+  
+        </api:call>
+  </api:script>
+
+</api:script>

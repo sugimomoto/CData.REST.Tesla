@@ -1,0 +1,76 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="VehicleStat" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="api_version"                           xs:type="double"  readonly="false"              other:xPath="/json/response/api_version"                           />
+    <attr name="autopark_state_v3"                     xs:type="string"  readonly="false"              other:xPath="/json/response/autopark_state_v3"                     />
+    <attr name="autopark_style"                        xs:type="string"  readonly="false"              other:xPath="/json/response/autopark_style"                        />
+    <attr name="calendar_supported"                    xs:type="boolean" readonly="false"              other:xPath="/json/response/calendar_supported"                    />
+    <attr name="car_version"                           xs:type="string"  readonly="false"              other:xPath="/json/response/car_version"                           />
+    <attr name="homelink_nearby"                       xs:type="boolean" readonly="false"              other:xPath="/json/response/homelink_nearby"                       />
+    <attr name="last_autopark_error"                   xs:type="string"  readonly="false"              other:xPath="/json/response/last_autopark_error"                   />
+    <attr name="locked"                                xs:type="boolean" readonly="false"              other:xPath="/json/response/locked"                                />
+    <attr name="media_state.remote_control_enabled"    xs:type="boolean" readonly="false"              other:xPath="/json/response/media_state/remote_control_enabled"    />
+    <attr name="notifications_supported"               xs:type="boolean" readonly="false"              other:xPath="/json/response/notifications_supported"               />
+    <attr name="odometer"                              xs:type="double"  readonly="false"              other:xPath="/json/response/odometer"                              />
+    <attr name="parsed_calendar_supported"             xs:type="boolean" readonly="false"              other:xPath="/json/response/parsed_calendar_supported"             />
+    <attr name="remote_start_enabled"                  xs:type="boolean" readonly="false"              other:xPath="/json/response/remote_start_enabled"                  />
+    <attr name="remote_start_supported"                xs:type="boolean" readonly="false"              other:xPath="/json/response/remote_start_supported"                />
+    <attr name="sentry_mode"                           xs:type="boolean" readonly="false"              other:xPath="/json/response/sentry_mode"                           />
+    <attr name="sentry_mode_available"                 xs:type="boolean" readonly="false"              other:xPath="/json/response/sentry_mode_available"                 />
+    <attr name="smart_summon_available"                xs:type="boolean" readonly="false"              other:xPath="/json/response/smart_summon_available"                />
+    <attr name="software_update.download_perc"         xs:type="double"  readonly="false"              other:xPath="/json/response/software_update/download_perc"         />
+    <attr name="software_update.expected_duration_sec" xs:type="double"  readonly="false"              other:xPath="/json/response/software_update/expected_duration_sec" />
+    <attr name="software_update.install_perc"          xs:type="double"  readonly="false"              other:xPath="/json/response/software_update/install_perc"          />
+    <attr name="software_update.scheduled_time_ms"     xs:type="double"  readonly="false"              other:xPath="/json/response/software_update/scheduled_time_ms"     />
+    <attr name="software_update.status"                xs:type="string"  readonly="false"              other:xPath="/json/response/software_update/status"                />
+    <attr name="software_update.version"               xs:type="string"  readonly="false"              other:xPath="/json/response/software_update/version"               />
+    <attr name="speed_limit_mode.current_limit_mph"    xs:type="double"  readonly="false"              other:xPath="/json/response/speed_limit_mode/current_limit_mph"    />
+    <attr name="speed_limit_mode.max_limit_mph"        xs:type="double"  readonly="false"              other:xPath="/json/response/speed_limit_mode/max_limit_mph"        />
+    <attr name="speed_limit_mode.min_limit_mph"        xs:type="double"  readonly="false"              other:xPath="/json/response/speed_limit_mode/min_limit_mph"        />
+    <attr name="summon_standby_mode_enabled"           xs:type="boolean" readonly="false"              other:xPath="/json/response/summon_standby_mode_enabled"           />
+    <attr name="sun_roof_state"                        xs:type="string"  readonly="false"              other:xPath="/json/response/sun_roof_state"                        />
+    <attr name="timestamp"                             xs:type="double"  readonly="false"              other:xPath="/json/response/timestamp"                             />
+    <attr name="valet_pin_needed"                      xs:type="boolean" readonly="false"              other:xPath="/json/response/valet_pin_needed"                      />
+    <attr name="vehicle_name"                          xs:type="string"  readonly="false"              other:xPath="/json/response/vehicle_name"                          />
+  </api:info>
+
+  <api:script method="GET">
+
+      <api:set attr="TokenApiRequest.data">
+{
+  "grant_type": "password",
+  "client_id": "[_connection.client_id]",
+  "client_secret": "[_connection.client_secret]",
+  "email": "[_connection.user]",
+  "password": "[_connection.password]"
+}
+      </api:set>
+
+      <api:set attr="TokenApiRequest.ElementMapPath#1" value="/access_token" />
+      <api:set attr="TokenApiRequest.ElementMapName#1" value="access_token" />
+      <api:set attr="TokenApiRequest.RepeatElement" value="/"/>
+      <api:set attr="TokenApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/oauth/token?grantType=password" />
+      <api:set attr="TokenApiRequest.Method" value="POST"/>
+
+      <api:set attr="TokenApiRequest.encodepostdata" value="false" />
+      <rsb:set attr="TokenApiRequest.ContentType" value="application/json"/>
+
+        <api:call op="jsonproviderGet" input="TokenApiRequest" output="TokenApiResponse">
+
+          <api:set attr="MainApiRequest.DataModel" value="DOCUMENT" />
+          <api:set attr="MainApiRequest.JSONPath" value="$.response" />
+          <api:set attr="MainApiRequest.EnablePaging" value="True" />  
+          <api:set attr="MainApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/api/1/vehicles/[_connection.VehicleId]/data_request/vehicle_stat" />
+          <api:set attr="MainApiRequest.header:name" value="Authorization"/>
+          <api:set attr="MainApiRequest.header:value" value="Bearer [TokenApiResponse.access_token]"/>
+
+          <api:call op="jsonproviderGet" input="MainApiRequest">
+            <api:push/>
+          </api:call>
+  
+        </api:call>
+  </api:script>
+
+</api:script>

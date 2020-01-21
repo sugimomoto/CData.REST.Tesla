@@ -1,0 +1,65 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="VehicleConfig" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="can_accept_navigation_requests" xs:type="boolean" readonly="false"              other:xPath="/json/response/can_accept_navigation_requests" />
+    <attr name="can_actuate_trunks"             xs:type="boolean" readonly="false"              other:xPath="/json/response/can_actuate_trunks"             />
+    <attr name="car_special_type"               xs:type="string"  readonly="false"              other:xPath="/json/response/car_special_type"               />
+    <attr name="car_type"                       xs:type="string"  readonly="false"              other:xPath="/json/response/car_type"                       />
+    <attr name="charge_port_type"               xs:type="string"  readonly="false"              other:xPath="/json/response/charge_port_type"               />
+    <attr name="exterior_color"                 xs:type="string"  readonly="false"              other:xPath="/json/response/exterior_color"                 />
+    <attr name="has_air_suspension"             xs:type="boolean" readonly="false"              other:xPath="/json/response/has_air_suspension"             />
+    <attr name="key_version"                    xs:type="double"  readonly="false"              other:xPath="/json/response/key_version"                    />
+    <attr name="motorized_charge_port"          xs:type="boolean" readonly="false"              other:xPath="/json/response/motorized_charge_port"          />
+    <attr name="perf_config"                    xs:type="string"  readonly="false"              other:xPath="/json/response/perf_config"                    />
+    <attr name="plg"                            xs:type="boolean" readonly="false"              other:xPath="/json/response/plg"                            />
+    <attr name="roof_color"                     xs:type="string"  readonly="false"              other:xPath="/json/response/roof_color"                     />
+    <attr name="seat_type"                      xs:type="double"  readonly="false"              other:xPath="/json/response/seat_type"                      />
+    <attr name="spoiler_type"                   xs:type="string"  readonly="false"              other:xPath="/json/response/spoiler_type"                   />
+    <attr name="sun_roof_installed"             xs:type="double"  readonly="false"              other:xPath="/json/response/sun_roof_installed"             />
+    <attr name="third_row_seats"                xs:type="string"  readonly="false"              other:xPath="/json/response/third_row_seats"                />
+    <attr name="timestamp"                      xs:type="double"  readonly="false"              other:xPath="/json/response/timestamp"                      />
+    <attr name="trim_badging"                   xs:type="string"  readonly="false"              other:xPath="/json/response/trim_badging"                   />
+    <attr name="wheel_type"                     xs:type="string"  readonly="false"              other:xPath="/json/response/wheel_type"                     />
+  </api:info>
+
+  <api:script method="GET">
+
+      <api:set attr="TokenApiRequest.data">
+{
+  "grant_type": "password",
+  "client_id": "[_connection.client_id]",
+  "client_secret": "[_connection.client_secret]",
+  "email": "[_connection.user]",
+  "password": "[_connection.password]"
+}
+      </api:set>
+
+      <api:set attr="TokenApiRequest.ElementMapPath#1" value="/access_token" />
+      <api:set attr="TokenApiRequest.ElementMapName#1" value="access_token" />
+      <api:set attr="TokenApiRequest.RepeatElement" value="/"/>
+      <api:set attr="TokenApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/oauth/token?grantType=password" />
+      <api:set attr="TokenApiRequest.Method" value="POST"/>
+
+      <api:set attr="TokenApiRequest.encodepostdata" value="false" />
+      <rsb:set attr="TokenApiRequest.ContentType" value="application/json"/>
+
+        <api:call op="jsonproviderGet" input="TokenApiRequest" output="TokenApiResponse">
+
+          <api:set attr="MainApiRequest.DataModel" value="DOCUMENT" />
+          <api:set attr="MainApiRequest.JSONPath" value="$.response" />
+          <api:set attr="MainApiRequest.EnablePaging" value="True" />  
+          <api:set attr="MainApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/api/1/vehicles/[_connection.VehicleId]/data_request/vehicle_config" />
+          <api:set attr="MainApiRequest.header:name" value="Authorization"/>
+          <api:set attr="MainApiRequest.header:value" value="Bearer [TokenApiResponse.access_token]"/>
+
+          <api:call op="jsonproviderGet" input="MainApiRequest">
+            <api:push/>
+          </api:call>
+  
+        </api:call>
+  </api:script>
+
+
+</api:script>

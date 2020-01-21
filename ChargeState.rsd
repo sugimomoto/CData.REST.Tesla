@@ -1,0 +1,68 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="ChargeState" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="battery_level"              xs:type="double"  readonly="false"              other:xPath="/json/response/battery_level"              />
+    <attr name="battery_range"              xs:type="double"  readonly="false"              other:xPath="/json/response/battery_range"              />
+    <attr name="charge_current_request"     xs:type="double"  readonly="false"              other:xPath="/json/response/charge_current_request"     />
+    <attr name="charge_current_request_max" xs:type="double"  readonly="false"              other:xPath="/json/response/charge_current_request_max" />
+    <attr name="charge_enable_request"      xs:type="boolean" readonly="false"              other:xPath="/json/response/charge_enable_request"      />
+    <attr name="charge_energy_added"        xs:type="double"  readonly="false"              other:xPath="/json/response/charge_energy_added"        />
+    <attr name="charge_limit_soc"           xs:type="double"  readonly="false"              other:xPath="/json/response/charge_limit_soc"           />
+    <attr name="charge_limit_soc_max"       xs:type="double"  readonly="false"              other:xPath="/json/response/charge_limit_soc_max"       />
+    <attr name="charge_limit_soc_min"       xs:type="double"  readonly="false"              other:xPath="/json/response/charge_limit_soc_min"       />
+    <attr name="charge_limit_soc_std"       xs:type="double"  readonly="false"              other:xPath="/json/response/charge_limit_soc_std"       />
+    <attr name="charge_miles_added_ideal"   xs:type="double"  readonly="false"              other:xPath="/json/response/charge_miles_added_ideal"   />
+    <attr name="charge_miles_added_rated"   xs:type="double"  readonly="false"              other:xPath="/json/response/charge_miles_added_rated"   />
+    <attr name="charge_port_latch"          xs:type="string"  readonly="false"              other:xPath="/json/response/charge_port_latch"          />
+    <attr name="charger_pilot_current"      xs:type="double"  readonly="false"              other:xPath="/json/response/charger_pilot_current"      />
+    <attr name="charging_state"             xs:type="string"  readonly="false"              other:xPath="/json/response/charging_state"             />
+    <attr name="conn_charge_cable"          xs:type="string"  readonly="false"              other:xPath="/json/response/conn_charge_cable"          />
+    <attr name="est_battery_range"          xs:type="double"  readonly="false"              other:xPath="/json/response/est_battery_range"          />
+    <attr name="fast_charger_brand"         xs:type="string"  readonly="false"              other:xPath="/json/response/fast_charger_brand"         />
+    <attr name="fast_charger_type"          xs:type="string"  readonly="false"              other:xPath="/json/response/fast_charger_type"          />
+    <attr name="ideal_battery_range"        xs:type="double"  readonly="false"              other:xPath="/json/response/ideal_battery_range"        />
+    <attr name="timestamp"                  xs:type="double"  readonly="false"              other:xPath="/json/response/timestamp"                  />
+    <attr name="usable_battery_level"       xs:type="double"  readonly="false"              other:xPath="/json/response/usable_battery_level"       />
+  </api:info>
+
+  <api:script method="GET">
+
+      <api:set attr="TokenApiRequest.data">
+{
+  "grant_type": "password",
+  "client_id": "[_connection.client_id]",
+  "client_secret": "[_connection.client_secret]",
+  "email": "[_connection.user]",
+  "password": "[_connection.password]"
+}
+      </api:set>
+
+      <api:set attr="TokenApiRequest.ElementMapPath#1" value="/access_token" />
+      <api:set attr="TokenApiRequest.ElementMapName#1" value="access_token" />
+      <api:set attr="TokenApiRequest.RepeatElement" value="/"/>
+      <api:set attr="TokenApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/oauth/token?grantType=password" />
+      <api:set attr="TokenApiRequest.Method" value="POST"/>
+
+      <api:set attr="TokenApiRequest.encodepostdata" value="false" />
+      <rsb:set attr="TokenApiRequest.ContentType" value="application/json"/>
+
+        <api:call op="jsonproviderGet" input="TokenApiRequest" output="TokenApiResponse">
+
+          <api:set attr="MainApiRequest.DataModel" value="DOCUMENT" />
+          <api:set attr="MainApiRequest.JSONPath" value="$.response" />
+          <api:set attr="MainApiRequest.EnablePaging" value="True" />  
+          <api:set attr="MainApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/api/1/vehicles/[_connection.VehicleId]/data_request/charge_state" />
+          <api:set attr="MainApiRequest.header:name" value="Authorization"/>
+          <api:set attr="MainApiRequest.header:value" value="Bearer [TokenApiResponse.access_token]"/>
+
+          <api:call op="jsonproviderGet" input="MainApiRequest">
+            <api:push/>
+          </api:call>
+  
+        </api:call>
+  </api:script>
+
+
+</api:script>

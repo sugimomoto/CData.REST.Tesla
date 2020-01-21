@@ -1,0 +1,47 @@
+<api:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+
+	<api:info title="ActuateTrunk" description="">
+    <input name="VehicleId"       required="true"  description="" />
+    <input name="WhichTrunk"      required="true"  description="" />
+    
+    <output name="Success"       description="If the operation succeeds."/>
+	</api:info>
+
+  <api:set attr="TokenApiRequest.data">
+{
+  "grant_type": "password",
+  "client_id": "[_connection.client_id]",
+  "client_secret": "[_connection.client_secret]",
+  "email": "[_connection.user]",
+  "password": "[_connection.password]"
+}
+  </api:set>
+
+  <api:set attr="TokenApiRequest.ElementMapPath#1" value="/access_token" />
+  <api:set attr="TokenApiRequest.ElementMapName#1" value="access_token" />
+  <api:set attr="TokenApiRequest.RepeatElement" value="/"/>
+  <api:set attr="TokenApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/oauth/token?grantType=password" />
+  <api:set attr="TokenApiRequest.Method" value="POST"/>
+
+  <api:set attr="TokenApiRequest.encodepostdata" value="false" />
+  <api:set attr="TokenApiRequest.ContentType" value="application/json"/>
+
+    <api:call op="jsonproviderGet" input="TokenApiRequest" output="TokenApiResponse">
+
+      <api:set attr="MainApiRequest.DataModel" value="DOCUMENT" />
+      <api:set attr="MainApiRequest.JSONPath" value="$.response" />
+      <api:set attr="MainApiRequest.EnablePaging" value="True" />  
+      <api:set attr="MainApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/api/1/vehicles/[_input.VehicleId]/command/actuate_trunk?whichTrunk=[_input.WhichTrunk]" />
+      <api:set attr="MainApiRequest.header:name" value="Authorization"/>
+      <api:set attr="MainApiRequest.header:value" value="Bearer [TokenApiResponse.access_token]"/>
+      <api:set attr="TokenApiRequest.Method" value="POST"/>
+
+      <api:call op="jsonproviderGet" input="MainApiRequest">
+        <api:push/>
+      </api:call>
+
+    </api:call>
+    
+
+	
+</api:script>

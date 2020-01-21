@@ -1,0 +1,57 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="ClimateState" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="climate_keeper_mode"           xs:type="string"  readonly="false"              other:xPath="/json/response/climate_keeper_mode"           />
+    <attr name="driver_temp_setting"           xs:type="double"  readonly="false"              other:xPath="/json/response/driver_temp_setting"           />
+    <attr name="max_avail_temp"                xs:type="double"  readonly="false"              other:xPath="/json/response/max_avail_temp"                />
+    <attr name="min_avail_temp"                xs:type="double"  readonly="false"              other:xPath="/json/response/min_avail_temp"                />
+    <attr name="passenger_temp_setting"        xs:type="double"  readonly="false"              other:xPath="/json/response/passenger_temp_setting"        />
+    <attr name="remote_heater_control_enabled" xs:type="boolean" readonly="false"              other:xPath="/json/response/remote_heater_control_enabled" />
+    <attr name="seat_heater_left"              xs:type="double"  readonly="false"              other:xPath="/json/response/seat_heater_left"              />
+    <attr name="seat_heater_rear_left"         xs:type="double"  readonly="false"              other:xPath="/json/response/seat_heater_rear_left"         />
+    <attr name="seat_heater_rear_right"        xs:type="double"  readonly="false"              other:xPath="/json/response/seat_heater_rear_right"        />
+    <attr name="seat_heater_right"             xs:type="double"  readonly="false"              other:xPath="/json/response/seat_heater_right"             />
+    <attr name="timestamp"                     xs:type="double"  readonly="false"              other:xPath="/json/response/timestamp"                     />
+  </api:info>
+
+  <api:script method="GET">
+
+      <api:set attr="TokenApiRequest.data">
+{
+  "grant_type": "password",
+  "client_id": "[_connection.client_id]",
+  "client_secret": "[_connection.client_secret]",
+  "email": "[_connection.user]",
+  "password": "[_connection.password]"
+}
+      </api:set>
+
+      <api:set attr="TokenApiRequest.ElementMapPath#1" value="/access_token" />
+      <api:set attr="TokenApiRequest.ElementMapName#1" value="access_token" />
+      <api:set attr="TokenApiRequest.RepeatElement" value="/"/>
+      <api:set attr="TokenApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/oauth/token?grantType=password" />
+      <api:set attr="TokenApiRequest.Method" value="POST"/>
+
+      <api:set attr="TokenApiRequest.encodepostdata" value="false" />
+      <rsb:set attr="TokenApiRequest.ContentType" value="application/json"/>
+
+        <api:call op="jsonproviderGet" input="TokenApiRequest" output="TokenApiResponse">
+
+          <api:set attr="MainApiRequest.DataModel" value="DOCUMENT" />
+          <api:set attr="MainApiRequest.JSONPath" value="$.response" />
+          <api:set attr="MainApiRequest.EnablePaging" value="True" />  
+          <api:set attr="MainApiRequest.uri"  value="https://orgopenapitools20200118014702.azurewebsites.net/api/1/vehicles/[_connection.VehicleId]/data_request/climate_state" />
+          <api:set attr="MainApiRequest.header:name" value="Authorization"/>
+          <api:set attr="MainApiRequest.header:value" value="Bearer [TokenApiResponse.access_token]"/>
+
+          <api:call op="jsonproviderGet" input="MainApiRequest">
+            <api:push/>
+          </api:call>
+  
+        </api:call>
+  </api:script>
+
+
+</api:script>
